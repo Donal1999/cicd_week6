@@ -1,5 +1,6 @@
 package ie.atu.week5_githubactions.service;
 
+import ie.atu.week5_githubactions.controller.errorHandling.DuplicateError;
 import ie.atu.week5_githubactions.model.Passenger;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class PassengerService {
     //post
     public Passenger create(Passenger p) { // create a passenger to add to arraylist
         if(findById(p.getPassengerId()).isPresent()) {
-            throw new IllegalArgumentException("Passenger already exists");
+            throw new DuplicateError("Passenger with id :" + p.getPassengerId() + " already exists");
         }
         store.add(p);
         return p;
