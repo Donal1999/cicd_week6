@@ -28,7 +28,7 @@ public class PassengerController {
         return ResponseEntity.notFound().build();
     }
     @PostMapping
-    public ResponseEntity<Passenger> create(@RequestBody Passenger p){
+    public ResponseEntity<Passenger> create(@Valid @RequestBody Passenger p){
         Passenger created = service.create(p);// calls the create method from the service layer and adds p to the array list
         return ResponseEntity
                 .created(URI.create("api/passengers/" + created.getPassengerId()))
